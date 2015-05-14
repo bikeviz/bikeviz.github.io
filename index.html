@@ -17,6 +17,9 @@
     <!-- Custom CSS -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
 
+    <!-- Heatmap CSS -->
+    <link href="css/heatmap.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -29,6 +32,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Heatmap visualization by D3 -->
+    <script src="js/heatmap.js"></script>
 </head>
 
 <body>
@@ -70,6 +75,8 @@
 
                     <p>Full bike docks can be an even bigger problem. If the dock is empty, I can just go and get the subway or a bus. When it is full, and I am on a bike, I have to cycle around with the meter running and find a nearby bike station that is not full. Thus, the bikeshare company has to maintain the balance between available bikes and empty docks across the city in order to optimize the system. It would be beneficial to plan the system if the company understood which stations are often used by commuters and which are used by leisure riders, like what I did in Central Park. However, distinguishing between the types of stations is not easy, since the riders are not asked to let the system know. So, can we classify affordances of bikeshare stations into commuters and leisure riders?</p>
 
+                    <h2 class="section-heading">Data</h2>
+
                     <p>In order to answer this question, my collaborator and I used trip history data provided by Citi Bike (NYC) and Capital Bikeshare (DC) to look for interesting footprints in the data. Citi Bike and Capital Bikeshare provide cleaned datasets to the public through their websites:
                     <ul><li><a href="https://www.citibikenyc.com/system-data">https://www.citibikenyc.com/system-data</a></li>
                     <li><a href="https://www.capitalbikeshare.com/system-data">https://www.capitalbikeshare.com/system-data</a></li></ul>
@@ -80,6 +87,8 @@
 
                     <img class="img-responsive center-block" src="img/trips.png" alt="">
                     <span class="caption text-muted">Round trip: bike for leisure, one way trip: riding with intent.</span>
+
+                    <h2 class="section-heading">Most Frequent Trips</h2>
 
                     <p>That being said, we can see stations in NYC’s most frequent trips below consist of round trips, one-way trips, and stations that are a combination of both of them. As can be seen from the map, round trip stations are found in Lower Manhattan, Rockefeller Park and New York City Hall. This may indicate that leisure riders enjoy the greenways and scenic views by riding along the Hudson River and West Channel close to Brooklyn Bridge. Round trip stations are also found in Central Park. Although stations in Central Park contain both trips, they are actually going to different stations still in Central Park. Similar to stations in Lower Manhattan, beautiful views offered by Central Park attract leisure riders to cycle around the park, just for fun or exercise.</p>
 
@@ -105,10 +114,14 @@
 
                     <p>We now understand that one-way trips and roundtrips depend on station’s location, whether it is surrounded by parks, commercial buildings, tourist attractions, or whether it is located in a highly dense region and close to a metro station. Additionally, bikeshare stations attract different types of riders: commuters and leisure riders. With this knowledge, can we classify the stations based on trip duration? Riders may use bikes for longer or shorter periods of time depending on their purpose. If the distribution of trip durations between one-way and roundtrip is different, we can use trip duration to build a model for predicting station affordances. </p>
 
+                    <h2 class="section-heading">Distribution of Trip Duration</h2>
+
                     <p>Thus, we counted the trip duration for both one way and round trips in NYC and DC and then plotted them as histograms below. We hoped to see the difference in the distribution between one way and round trips, but as we can see, the results are almost similar for all the plots, contrary to our expectations. The distribution’s peak is in the middle, less than 1,000 seconds or 15 minutes, and tends to decrease with longer trips. Most of the riders use bikes for less than 30 minutes, which is reasonable since both Citi Bike and Capital Bikeshare will only charge an additional “overtime” fee for the longer bike trips. From the plots, we can conclude that trip duration cannot be used to classify stations based on the rider types.</p>
 
                     <img class="img-responsive center-block" src="img/tripduration.png" alt="">
                     <span class="caption text-muted">Distribution of trip duration for one way trips and round trips in NYC and DC.</span>
+
+                    <h2 class="section-heading">Daily Ridership Pattern</h2>
 
                     <p>Instead, could we classify the stations based on daily ridership patterns? We hoped to see the difference in daily ridership between one way and round trips, since people who commute to work have to follow the working schedule which is typically 9am to 5pm. If this is different, we can build a model based on daily ridership to predict station affordances. We plotted a heatmap that shows daily ridership pattern for one way trip in NYC and DC as below.</p>
 
@@ -146,11 +159,13 @@
 
                     <p>This project was created by Giri Kuncoro and Samuel Tung for a course in Computational Method for Data Science at <a href="http://cornell.edu">Cornell</a> taught by <a href="http://www.cs.cornell.edu/~danco/">Dan Cosley</a>. Several open-source projects were used including <a href="http://d3js.org/">D3</a>, <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="http://cartodb.com/">CartoDB</a>, <a href="http://matplotlib.org/">Matplotlib</a>, and <a href="http://www.numpy.org/">Numpy</a>. Data courtesy of <a href="https://www.citibikenyc.com/">Citi Bike</a> and <a href="https://www.capitalbikeshare.com/">Capital Bikeshare</a>.</p>
 
+                    <p>Some of the previous works inspired this project, including <a href="http://bikes.oobrien.com/newyork/#zoom=13&lon=-73.9870&lat=40.7290">Bikeshare Map</a>, <a href="http://rethinkcollegepark.net/blog/wp-content/uploads/2006/07/DaddioMP_Final-Draft.pdf">Maximizing Bicycle Sharing</a>, <a href="http://www.redeyechicago.com/news/redeye-divvy-data-challenge-entry-26-20150330-htmlstory.html">Divvy Trip Trends</a>, <a href="https://public.tableau.com/profile/chicagodataviz#!/vizhome/DivvyDataChallenge_0/DivvySummary">Divvy Data Challenge</a>, and <a href="http://docs.trb.org/prp/13-1862.pdf">Bikeshare Station-Level Forecasting</a>.</p>
+
                     <h2 class="section-heading">Source Code</h2>
 
                     <p>The source code is available on <a href="http://nbviewer.ipython.org/github/bikeviz/bikeviz.github.io/blob/master/bikeshares.ipynb">Notebook viewer</a> and raw data is available <a href="https://github.com/bikeviz/bikeviz.github.io/tree/master/data">on github</a> as well as <a href="https://www.citibikenyc.com/system-data">Citi Bike</a> and <a href="https://www.capitalbikeshare.com/system-data">Capital Bikeshare</a> website.</p>
 
-                    <p>For any questions, please reach out to <a href="http://twitter.com/girikuncoro">Giri Kuncoro</a> or <a href="#">Samuel Tung</a> on Twitter.</p>
+                    <p>For any questions, please reach out to <a href="http://twitter.com/girikuncoro">Giri Kuncoro</a> or <a href="https://www.facebook.com/mmeos?hc_location=ufi">Samuel Tung</a> on Twitter.</p>
 
                 </div>
             </div>
