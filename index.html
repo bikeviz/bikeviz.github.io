@@ -20,6 +20,9 @@
     <!-- Heatmap CSS -->
     <link href="css/heatmap.css" rel="stylesheet">
 
+    <!-- Leaflet CSS -->
+     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -31,9 +34,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <!-- Heatmap visualization by D3 -->
-    <script src="js/heatmap.js"></script>
 </head>
 
 <body>
@@ -71,8 +71,11 @@
 
                     <p>Citi Bike as well as other bike sharing programs have the potential to revolutionize city life, not just in New York. While New York has the nation’s largest program with more than 6,000 bikes and 300 docking stations, the Capital Bikeshare system in DC has been running for almost 5 years.  What makes the programs special and potentially game-changing is that we only possess the bicycle while we are riding it. We pick it up, use it and leave it. If I bike to work using my own bicycle, I have to worry about locking it up and riding it back to my home again, even if the weather has changed, or simply if my mood to ride my bike has changed.</p>
 
-                    <p>The bikes save time when traveling while expanding the number of places in a city that we can reach quickly and easily. They are a type of public transit that provides the same mobility as personal private transport without the costs or burdens. They also increase the flexibility of the transportation system. With bicycles eventually distributed all around the city, I could see a rich combination of bikes, taxis, cabs, subways, buses, and private cars in our daily lives. However, as the system grows, problems like what I faced in Times Square occurred: empty docks. But the docks cannot be fully occupied also, since riders will need empty docks to drop off their bikes.</p>
+                    <p>The bikes save time when traveling while expanding the number of places in a city that we can reach quickly and easily. They are a type of public transit that provides the same mobility as personal private transport without the costs or burdens. They also increase the flexibility of the transportation system. With bicycles eventually distributed all around the city, I could see a rich combination of bikes, taxis, cabs, subways, buses, and private cars in our daily lives. However, as the system grows, problems like what I faced in Times Square occurred: empty docks. The map below shows a lot of stations with empty docks in NYC, without any available bikes that riders can use. But the docks cannot be fully occupied also, since riders will need empty docks to drop off their bikes.</p>
 
+                    <div id="map"></div>
+                    <span class="caption text-muted">Stations with empty docks in NYC (data updated at 8pm, 14 May 2015).</span>
+                    
                     <p>Full bike docks can be an even bigger problem. If the dock is empty, I can just go and get the subway or a bus. When it is full, and I am on a bike, I have to cycle around with the meter running and find a nearby bike station that is not full. Thus, the bikeshare company has to maintain the balance between available bikes and empty docks across the city in order to optimize the system. It would be beneficial to plan the system if the company understood which stations are often used by commuters and which are used by leisure riders, like what I did in Central Park. However, distinguishing between the types of stations is not easy, since the riders are not asked to let the system know. So, can we classify affordances of bikeshare stations into commuters and leisure riders?</p>
 
                     <h2 class="section-heading">Data</h2>
@@ -178,7 +181,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p class="copyright text-muted">Made during the warmest weather of Ithaca, Spring 2015.</p>
+                    <p class="copyright text-muted">Made during the warmest weather in Ithaca, Spring 2015.</p>
                 </div>
             </div>
         </div>
@@ -190,9 +193,15 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <!-- D3 -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>
 
+    <!-- Leaflet Javascript -->
+     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+     <script src="js/map.js"></script>
 </body>
 
 </html>
